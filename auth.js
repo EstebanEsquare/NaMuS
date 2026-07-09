@@ -1,7 +1,6 @@
 /**
  * Authentication Module
- * 
- * Kullanıcı girişi ve şifre kontrolü işlemleri
+ * * Kullanıcı girişi ve şifre kontrolü işlemleri
  */
 
 // Ortak şifre
@@ -79,4 +78,11 @@ function getColorCode(color) {
     return colors[color] || colors.blue;
 }
 
-
+// DİĞER DOSYALARIN BU FONKSİYONLARA ERİŞEBİLMESİ İÇİN GLOBAL (WINDOW) OBJESİNE AKTARIYORUZ
+window.verifyPassword = verifyPassword;
+window.setLoggedIn = setLoggedIn;
+window.isLoggedIn = isLoggedIn;
+window.logout = logout;
+window.setUserColor = setUserColor;
+window.getUserColor = getUserColor;
+window.getColorCode = getColorCode;
