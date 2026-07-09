@@ -4,7 +4,6 @@
 const firebaseConfig = {
   apiKey: "AIzaSyBmiVoAb6DC18ij1-IFa8rgEvsU3XYd0i0",
   authDomain: "kabanus-cf463.firebaseapp.com",
-  // ÖNEMLİ: databaseURL kısmının projenle eşleştiğinden emin ol
   databaseURL: "https://kabanus-cf463-default-rtdb.firebaseio.com",
   projectId: "kabanus-cf463",
   storageBucket: "kabanus-cf463.firebasestorage.app",
@@ -14,17 +13,18 @@ const firebaseConfig = {
 
 // Firebase'i başlat
 firebase.initializeApp(firebaseConfig);
-
-// Veritabanı referansını al
 const db = firebase.database();
 
-// Oturum ID'si oluştur (Her sayfa yenilenmesinde yeni oturum)
+// Oturum ID'si oluştur (Her sayfa yenilemede yeni bir oturum gibi davranmak için)
 function getSessionId() {
-    // Sayfa kapatılınca silinmesi için sessionStorage kullanıyoruz
+    // Sayfa her yenilendiğinde yeni bir session ID üretelim ki eski mesajlar gelmesin
+    // AMA aynı sekme açık kaldığı sürece aynı ID'yi kullanalım
     if (!sessionStorage.getItem('chat_session_id')) {
         sessionStorage.setItem('chat_session_id', 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9));
     }
     return sessionStorage.getItem('chat_session_id');
 }
 
-const sessionId = getSessionId();
+// Değişkenleri global pencereye atıyoruz ki diğer dosyalar erişebilsin
+window.db = db;
+window.sessionId = getSessionId();
