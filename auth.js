@@ -79,13 +79,4 @@ function getColorCode(color) {
     return colors[color] || colors.blue;
 }
 
-export {
-    verifyPassword,
-    setLoggedIn,
-    isLoggedIn,
-    logout,
-    setUserColor,
-    getUserColor,
-    getColorCode,
-    STORAGE_KEYS
-};
+
