@@ -28,8 +28,20 @@ function getSessionId() {
 // Değişkenleri global pencereye atıyoruz ki diğer dosyalar erişebilsin
 window.db = db;
 window.sessionId = getSessionId();
+
+/**
+ * Oturum ID'yi sıfırla (yeni oturum için)
+ */
+function resetSessionId() {
+    sessionStorage.removeItem('chat_session_id');
+    window.sessionId = getSessionId();
+}
+
 // Mesajların veritabanında kaydedileceği adresi belirten fonksiyon
 window.getMessagesRef = function() {
     // Tüm hesapların aynı gizli kanalda haberleşmesi için ortak bir referans noktası:
     return window.db.ref('messages/channel_alpha'); 
 };
+
+// resetSessionId fonksiyonunu global yap
+window.resetSessionId = resetSessionId;
