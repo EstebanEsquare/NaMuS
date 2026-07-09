@@ -149,14 +149,3 @@ function scrollToBottom(container) {
         container.scrollTop = container.scrollHeight;
     }
 }
-
-export {
-    sendMessage,
-    startListeningForMessages,
-    stopListeningForMessages,
-    formatTime,
-    createMessageHTML,
-    escapeHTML,
-    renderMessages,
-    scrollToBottom
-};
