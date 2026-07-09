@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4A90D9">
+    <title>Çevrimdışı</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .offline-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .retry-btn {
+            background: #4A90D9;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .retry-btn:hover {
+            background: #3a7bc8;
+            transform: translateY(-2px);
+        }
+        
+        .retry-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #e74c3c;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .online-status {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .online-status.online .status-indicator {
+            background: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📡</div>
+        <h1>Çevrimdışı</h1>
+        <p>İnternet bağlantınız yok gibi görünüyor. Lütfen bağlantınızı kontrol edin ve tekrar deneyin.</p>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+            🔄 Yeniden Dene
+        </button>
+        
+        <div class="online-status" id="online-status">
+            <span class="status-indicator"></span>
+            <span id="status-text">Bağlantı kontrol ediliyor...</span>
+        </div>
+    </div>
+
+    <script>
+        // Online/offline durumunu izle
+        function updateStatus() {
+            const statusEl = document.getElementById('online-status');
+            const statusText = document.getElementById('status-text');
+            
+            if (navigator.onLine) {
+                statusEl.classList.add('online');
+                statusText.textContent = 'İnternet bağlantısı mevcut! Yönlendiriliyorsunuz...';
+                
+                // 2 saniye sonra ana sayfaya yönlendir
+                setTimeout(() => {
+                    window.location.href = './index.html';
+                }, 2000);
+            } else {
+                statusEl.classList.remove('online');
+                statusText.textContent = 'İnternet bağlantısı yok';
+            }
+        }
+        
+        // Sayfa yüklendiğinde durumu kontrol et
+        updateStatus();
+        
+        // Durum değişikliklerini dinle
+        window.addEventListener('online', updateStatus);
+        window.addEventListener('offline', updateStatus);
+    </script>
+</body>
+</html>
