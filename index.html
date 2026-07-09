@@ -6,12 +6,10 @@
     <meta name="theme-color" content="#4A90D9">
     <meta name="description" content="Güvenli şirket içi sohbet uygulaması">
     
-    <!-- PWA Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Sohbet">
     
-    <!-- Icons -->
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="manifest" href="manifest.json">
@@ -21,7 +19,6 @@
 </head>
 <body>
     <div id="app">
-        <!-- Login Screen -->
         <div id="login-screen" class="screen active">
             <div class="login-container">
                 <h1>🔐 Sohbet</h1>
@@ -32,7 +29,6 @@
             </div>
         </div>
 
-        <!-- Color Selection Screen -->
         <div id="color-screen" class="screen">
             <div class="color-container">
                 <h2>Renk Seçin</h2>
@@ -48,7 +44,6 @@
             </div>
         </div>
 
-        <!-- Chat Screen -->
         <div id="chat-screen" class="screen">
             <header class="chat-header">
                 <h1>💬 Sohbet</h1>
@@ -75,17 +70,14 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     
-    <!-- App Scripts -->
-<script type="module" src="firebase.js"></script>
-<script type="module" src="auth.js"></script>
-<script type="module" src="chat.js"></script>
-<script type="module" src="app.js"></script>
+    <script src="firebase.js" defer></script>
+    <script src="auth.js" defer></script>
+    <script src="chat.js" defer></script>
+    <script src="app.js" defer></script>
     
-    <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
