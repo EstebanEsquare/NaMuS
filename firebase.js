@@ -28,3 +28,8 @@ function getSessionId() {
 // Değişkenleri global pencereye atıyoruz ki diğer dosyalar erişebilsin
 window.db = db;
 window.sessionId = getSessionId();
+// Mesajların veritabanında kaydedileceği adresi belirten fonksiyon
+window.getMessagesRef = function() {
+    // Tüm hesapların aynı gizli kanalda haberleşmesi için ortak bir referans noktası:
+    return window.db.ref('messages/channel_alpha'); 
+};
